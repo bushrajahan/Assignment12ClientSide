@@ -1,0 +1,171 @@
+[
+  {
+    "id": 1,
+    "contestName": "Speedway Showdown",
+    "image": "https://i.ibb.co/0ZrBpkz/banner1.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/1",
+    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks."
+  },
+  {
+    "id": 2,
+    "contestName": "Turbo Trials",
+    "image": "https://i.ibb.co/Nt4ysB5/banner2.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/2",
+    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition."
+  },
+  {
+    "id": 3,
+    "contestName": "Grand Prix Glory",
+    "image": "https://i.ibb.co/2dN223R/banner3.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/3",
+    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory."
+  },
+  {
+    "id": 4,
+    "contestName": "Rally Revolution",
+    "image": "https://i.ibb.co/KhgvPxN/cae24.jpg",
+    "attemptedCount": 110,
+    "detailsButtonLink": "/contest-details/4",
+    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge."
+  },
+  {
+    "id": 5,
+    "contestName": "Drift Dynamics",
+    "image": "https://i.ibb.co/vjkfsKQ/cae25.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/5",
+    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control."
+  },
+  {
+    "id": 6,
+    "contestName": "Street Circuit Showdown",
+    "image": "https://i.ibb.co/mbwWGc1/car.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/6",
+    "shortDescription": "Navigate the urban challenges in the Street Circuit Showdown and prove your racing prowess."
+  },
+  {
+    "id": 7,
+    "contestName": "Extreme Endurance",
+    "image": "https://i.ibb.co/xmYXm44/car1.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/7",
+    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina."
+  },
+  {
+    "id": 8,
+    "contestName": "Virtual Velocity",
+    "image": "https://i.ibb.co/SmMS2Z2/car2.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/8",
+    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills."
+  },
+  {
+    "id": 9,
+    "contestName": "Off-Road Odyssey",
+    "image": "https://i.ibb.co/SmMS2Z2/car2.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/9",
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+  },
+  {
+    "id": 10,
+    "contestName": "Supercar Showcase",
+    "image": "https://i.ibb.co/JzpynVz/car11.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/10",
+    "shortDescription": "Join the Supercar Showcase and compete with top-of-the-line vehicles in this high-end racing spectacle."
+  },
+  {
+    "id": 11,
+    "contestName": "Speedway Showdown",
+    "image": "https://i.ibb.co/G5Rwg9j/car10.jpg",
+    "attemptedCount": 120,
+    "detailsButtonLink": "/contest-details/1",
+    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks."
+  },
+  {
+    "id": 12,
+    "contestName": "Turbo Trials",
+    "image": "https://i.ibb.co/ZNW9CWg/car12.jpg",
+    "attemptedCount": 85,
+    "detailsButtonLink": "/contest-details/2",
+    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition."
+  },
+  {
+    "id": 13,
+    "contestName": "Grand Prix Glory",
+    "image": "https://i.ibb.co/F04Wz2j/car13.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/3",
+    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory."
+  },
+  {
+    "id": 14,
+    "contestName": "Rally Revolution",
+    "image": "https://i.ibb.co/b1dGnSS/car23.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/4",
+    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge."
+  },
+  {
+    "id": 15,
+    "contestName": "Drift Dynamics",
+    "image": "https://i.ibb.co/n0Gdk8v/car26.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/5",
+    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control."
+  },
+  {
+    "id": 16,
+    "contestName": "Street Circuit Showdown",
+    "image": "https://i.ibb.co/sCJFwJK/car19.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/6",
+    "shortDescription": "Navigate the urban challenges in the Street Circuit Showdown and prove your racing prowess."
+  },
+  {
+    "id": 17,
+    "contestName": "Extreme Endurance",
+    "image": "https://i.ibb.co/P1GD1Jb/car3.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/7",
+    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina."
+  },
+  {
+    "id": 18,
+    "contestName": "Virtual Velocity",
+    "image": "https://i.ibb.co/sCJFwJK/car19.jpg",
+    "attemptedCount":0,
+    "detailsButtonLink": "/contest-details/8",
+    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills."
+  },
+{
+    "id": 19,
+    "contestName": "Off-Road Odyssey",
+    "image": "https://i.ibb.co/G5Rwg9j/car10.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/9",
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+  },
+{
+    "id": 20,
+    "contestName": "Off-Road Odyssey",
+    "image": "https://i.ibb.co/ZNW9CWg/car12.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/9",
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+  },
+  {
+    "id": 21,
+    "contestName": "Off-Road Odyssey",
+    "image": "https://i.ibb.co/b1dGnSS/car23.jpg",
+    "attemptedCount": 0,
+    "detailsButtonLink": "/contest-details/9",
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+  }
+ 
+]
