@@ -7,19 +7,15 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 import autoprefixer from 'autoprefixer';
+import useData from '../Components/Hook/UseData';
 
 
 
 const PopularContest = () => {
-  const [datas, setData] = useState([]);
+  const [datas] = useData([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch('/items.json')
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => setError(err)); // Add error handling
-  }, []);
+
 
   return (
     <div className='text-center my-20'>
@@ -32,11 +28,11 @@ const PopularContest = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination,EffectCoverflow,Autoplay]}
+        modules={[EffectCoverflow,Autoplay]}
     
         className="mySwiper"
         autoplay={{
-          delay: 3000,
+          delay: 2000,
           disableOnInteraction: false, // Allow user interaction to pause autoplay
         }}
         breakpoints={

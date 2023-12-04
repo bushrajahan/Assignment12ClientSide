@@ -1,171 +1,404 @@
 [
   {
-    "id": 1,
+    
     "contestName": "Speedway Showdown",
     "image": "https://i.ibb.co/0ZrBpkz/banner1.jpg",
+    "person":"shakib Al HASAN",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/1",
-    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks."
+    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks.",
+    "winner": "Placeholder Winner",
+    "organizer": "Race Master",
+    "prize": "Speedway Champion Trophy",
+    "motivation": "Feel the adrenaline as you conquer the twists and turns of the Speedway Showdown!",
+    "winning":"https://i.ibb.co/h2yBSNn/person1.jpg",
+    "contestType":"Gaming",
+    "price":100
   },
   {
-    "id": 2,
+    
     "contestName": "Turbo Trials",
     "image": "https://i.ibb.co/Nt4ysB5/banner2.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/2",
-    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition."
+    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition.",
+    "winner": "Placeholder Winner",
+    "organizer": "Turbo Master",
+    "prize": "Turbo Trials Trophy",
+    "motivation": "Push your limits and feel the rush in the heart-pounding Turbo Trials!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 3,
+    
     "contestName": "Grand Prix Glory",
     "image": "https://i.ibb.co/2dN223R/banner3.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/3",
-    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory."
+    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory.",
+    "winner": "Placeholder Winner",
+    "organizer": "Grand Master",
+    "prize": "Grand Prix Champion Cup",
+    "motivation": "Chase glory and victory in the prestigious Grand Prix circuit!",
+    "winning":"https://i.ibb.co/0V33FLv/person6.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 4,
+    
+    "contestName": "Cultural Insights",
+    "image": "https://i.ibb.co/xHmPYy1/pexels-photo-8726372.jpg",
+    "attemptedCount": 80,
+    "shortDescription": "Share your articles delving into diverse cultural perspectives and insights.",
+    "organizer": "Cultural Heritage Society",
+    "name": "Global Perspectives",
+    "prize": "Cultural Harmony Award",
+    "winning":"https://i.ibb.co/ZV2cSxC/person2.jpg",
+    "contestType": "Article",
+    "price": 150
+  },
+  {
+    
+    "contestName": "Medical Research Innovation",
+    "image": "https://i.ibb.co/hLGw15n/pexels-pixabay-356040.jpg",
+    "attemptedCount": 45,
+    "shortDescription": "Participate in advancing medical research through innovative projects.",
+    "organizer": "Research Institute for Medicine",
+    "name": "Innovation Challenge",
+    "prize": "Medical Research Excellence Grant",
+    "winning":"https://i.ibb.co/h2yBSNn/person1.jpg",
+    "contestType": "Medical",
+    "price": 200
+  },  
+  {
+    
     "contestName": "Rally Revolution",
     "image": "https://i.ibb.co/KhgvPxN/cae24.jpg",
     "attemptedCount": 110,
     "detailsButtonLink": "/contest-details/4",
-    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge."
+    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge.",
+    "winner": "Placeholder Winner",
+    "organizer": "Rally Master",
+    "prize": "Rally Revolution Trophy",
+    "motivation": "Conquer the rugged terrains and be crowned the Rally Revolution champion!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 5,
+    
     "contestName": "Drift Dynamics",
     "image": "https://i.ibb.co/vjkfsKQ/cae25.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/5",
-    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control."
+    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control.",
+    "winner": "Placeholder Winner",
+    "organizer": "Drift Master",
+    "prize": "Drift Dynamics Trophy",
+    "motivation": "Unleash your drifting skills and leave a trail of awe in Drift Dynamics!",
+    "winning":"https://i.ibb.co/zRm2XY5/person12.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 6,
+    
     "contestName": "Street Circuit Showdown",
     "image": "https://i.ibb.co/mbwWGc1/car.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/6",
-    "shortDescription": "Navigate the urban challenges in the Street Circuit Showdown and prove your racing prowess."
+    "shortDescription": "Navigate the urban challenges in the Street Circuit Showdown and prove your racing prowess.",
+    "winner": "Placeholder Winner",
+    "organizer": "Street Master",
+    "prize": "Street Circuit Showdown Trophy",
+    "motivation": "Rule the city streets and become the Street Circuit Showdown champion!",
+    "winning":"https://i.ibb.co/zfwfSmM/person17.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 7,
+    
     "contestName": "Extreme Endurance",
     "image": "https://i.ibb.co/xmYXm44/car1.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/7",
-    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina."
+    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina.",
+    "winner": "Placeholder Winner",
+    "organizer": "Endurance Master",
+    "prize": "Extreme Endurance Trophy",
+    "motivation": "Endure the challenges and emerge as the Extreme Endurance champion!",
+    "winning":"https://i.ibb.co/m5M3bxn/person11.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 8,
+    
     "contestName": "Virtual Velocity",
     "image": "https://i.ibb.co/SmMS2Z2/car2.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/8",
-    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills."
+    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills.",
+    "winner": "Placeholder Winner",
+    "organizer": "Virtual Master",
+    "prize": "Virtual Velocity Trophy",
+    "motivation": "Navigate the virtual realm and be hailed as the Digital Driving Maestro!",
+    "winning":"https://i.ibb.co/XVBW4Sp/person14.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 9,
+    
     "contestName": "Off-Road Odyssey",
     "image": "https://i.ibb.co/SmMS2Z2/car2.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/9",
-    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails.",
+    "winner": "Placeholder Winner",
+    "organizer": "Off-Road Master",
+    "prize": "Off-Road Odyssey Trophy",
+    "motivation": "Conquer the wild terrains and emerge victorious in the Off-Road Odyssey!",
+    "winning":"https://i.ibb.co/gr4MwLT/perso9.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 10,
+    
     "contestName": "Supercar Showcase",
     "image": "https://i.ibb.co/JzpynVz/car11.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/10",
-    "shortDescription": "Join the Supercar Showcase and compete with top-of-the-line vehicles in this high-end racing spectacle."
+    "shortDescription": "Join the Supercar Showcase and compete with top-of-the-line vehicles in this high-end racing spectacle.",
+    "winner": "Placeholder Winner",
+    "organizer": "Supercar Master",
+    "prize": "Supercar Showcase Trophy",
+    "motivation": "Race in style with the most elite vehicles and claim the Supercar Showcase title!",
+    "winning":"https://i.ibb.co/ZV2cSxC/person2.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 11,
+    
     "contestName": "Speedway Showdown",
     "image": "https://i.ibb.co/G5Rwg9j/car10.jpg",
     "attemptedCount": 120,
     "detailsButtonLink": "/contest-details/1",
-    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks."
+    "shortDescription": "Join the Speedway Showdown and compete against skilled racers on challenging tracks.",
+    "winner": "Placeholder Winner",
+    "organizer": "Race Master",
+    "prize": "Speedway Champion Trophy",
+    "motivation": "Feel the adrenaline as you conquer the twists and turns of the Speedway Showdown!",
+    "winning":"https://i.ibb.co/h2yBSNn/person1.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 12,
+    
     "contestName": "Turbo Trials",
     "image": "https://i.ibb.co/ZNW9CWg/car12.jpg",
     "attemptedCount": 85,
     "detailsButtonLink": "/contest-details/2",
-    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition."
+    "shortDescription": "Test your turbocharged skills in the high-speed excitement of the Turbo Trials racing competition.",
+    "winner": "Placeholder Winner",
+    "organizer": "Turbo Master",
+    "prize": "Turbo Trials Trophy",
+    "motivation": "Push your limits and feel the rush in the heart-pounding Turbo Trials!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 13,
+    
     "contestName": "Grand Prix Glory",
     "image": "https://i.ibb.co/F04Wz2j/car13.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/3",
-    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory."
+    "shortDescription": "Experience the thrill of Grand Prix Glory as you race against top competitors for victory.",
+    "winner": "Placeholder Winner",
+    "organizer": "Grand Master",
+    "prize": "Grand Prix Champion Cup",
+    "motivation": "Chase glory and victory in the prestigious Grand Prix circuit!",
+    "winning":"https://i.ibb.co/0V33FLv/person6.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 14,
+    
     "contestName": "Rally Revolution",
     "image": "https://i.ibb.co/b1dGnSS/car23.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/4",
-    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge."
+    "shortDescription": "Embark on a Rally Revolution and navigate through diverse terrains in this off-road racing challenge.",
+    "winner": "Placeholder Winner",
+    "organizer": "Rally Master",
+    "prize": "Rally Revolution Trophy",
+    "motivation": "Conquer the rugged terrains and be crowned the Rally Revolution champion!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 15,
+    
     "contestName": "Drift Dynamics",
     "image": "https://i.ibb.co/n0Gdk8v/car26.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/5",
-    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control."
+    "shortDescription": "Master the art of drifting in the Drift Dynamics competition, showcasing your precision and control.",
+    "winner": "Placeholder Winner",
+    "organizer": "Drift Master",
+    "prize": "Drift Dynamics Trophy",
+    "motivation": "Unleash your drifting skills and leave a trail of awe in Drift Dynamics!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 16,
+    
     "contestName": "Street Circuit Showdown",
     "image": "https://i.ibb.co/sCJFwJK/car19.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/6",
-    "shortDescription": "Navigate the urban challenges in the Street Circuit Showdown and prove your racing prowess."
+    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina.",
+    "organizer": "Street Master",
+    "prize": "Street Circuit Showdown Trophy",
+    "motivation": "Rule the city streets and become the Street Circuit Showdown champion!",
+    "winning":"https://i.ibb.co/zfwfSmM/person17.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
   {
-    "id": 17,
-    "contestName": "Extreme Endurance",
-    "image": "https://i.ibb.co/P1GD1Jb/car3.jpg",
-    "attemptedCount": 0,
-    "detailsButtonLink": "/contest-details/7",
-    "shortDescription": "Push your limits in the Extreme Endurance race, a test of both speed and stamina."
-  },
-  {
-    "id": 18,
+    
     "contestName": "Virtual Velocity",
     "image": "https://i.ibb.co/sCJFwJK/car19.jpg",
-    "attemptedCount":0,
+    "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/8",
-    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills."
+    "shortDescription": "Enter the world of Virtual Velocity, a futuristic racing experience that challenges your digital driving skills.",
+    "organizer": "Virtual Master",
+    "prize": "Virtual Velocity Trophy",
+    "motivation": "Navigate the virtual realm and be hailed as the Digital Driving Maestro!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg"
   },
-{
-    "id": 19,
+  {
+    
     "contestName": "Off-Road Odyssey",
     "image": "https://i.ibb.co/G5Rwg9j/car10.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/9",
-    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails.",
+    "organizer": "Off-Road Master",
+    "prize": "Off-Road Odyssey Trophy",
+    "motivation": "Conquer the wild terrains and emerge victorious in the Off-Road Odyssey!",
+    "winning":"https://i.ibb.co/gr4MwLT/perso9.jpg",
+    "contestType":"Gaming",
+    "price":50
   },
-{
-    "id": 20,
+  {
+    
     "contestName": "Off-Road Odyssey",
     "image": "https://i.ibb.co/ZNW9CWg/car12.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/9",
-    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails.",
+    "organizer": "Off-Road Master",
+    "prize": "Off-Road Odyssey Trophy",
+    "motivation": "Conquer the wild terrains and emerge victorious in the Off-Road Odyssey!",
+    "winning":"https://i.ibb.co/27Bk89W/person5.jpg",
+    "contestType":"Gaming",
+    "price":50
+
   },
   {
-    "id": 21,
+    
     "contestName": "Off-Road Odyssey",
     "image": "https://i.ibb.co/b1dGnSS/car23.jpg",
     "attemptedCount": 0,
     "detailsButtonLink": "/contest-details/9",
-    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails."
+    "shortDescription": "Embark on an Off-Road Odyssey, conquering rugged landscapes and unpredictable trails.",
+    "organizer": "Off-Road Master",
+    "prize": "Off-Road Odyssey Trophy",
+    "motivation": "Conquer the wild terrains and emerge victorious in the Off-Road Odyssey!",
+    "winning":"https://i.ibb.co/ZV2cSxC/person2.jpg",
+    "contestType":"Gaming",
+    "price":50
+  },
+  {
+    
+    "contestName": "Mental Health Awareness Campaign",
+    "image": "https://i.ibb.co/VB4QSKv/con3.jpg",
+    "attemptedCount": 80,
+    "shortDescription": "Hack your way to improve patient care and healthcare services.",
+    "organizer": "HealthTech Innovators",
+    "name": "CareTech Hack",
+    "prize": "Patient-Centric Innovation Award",
+    "winning": "https://i.ibb.co/mno678/hackathon-winner.jpg",
+    "contestType": "Medical",
+    "price": 150
+  },
+  {
+    
+    "contestName": "Mental Health Awareness Campaign",
+    "image": "https://i.ibb.co/HFkXCkR/Mental.webp",
+    "attemptedCount": 60,
+    "shortDescription": "Contribute to raising awareness about mental health and well-being.",
+    "organizer": "Mindful Minds Foundation",
+    "name": "Mindful Campaign",
+    "prize": "Advocacy and Awareness Trophy",
+    "winning": "https://i.ibb.co/stu234/mental-health-winner.jpg",
+    "contestType": "Medical",
+    "price": 75
+  },
+  {
+    
+    "contestName": "Patient Care Hackathon",
+    "image": "https://i.ibb.co/4FY51Q1/ppm.webp",
+    "attemptedCount": 80,
+    "shortDescription": "Hack your way to improve patient care and healthcare services.",
+    "organizer": "HealthTech Innovators",
+    "name": "CareTech Hack",
+    "prize": "Patient-Centric Innovation Award",
+    "winning": "https://i.ibb.co/mno678/hackathon-winner.jpg",
+    "contestType": "Medical",
+    "price": 150
+  },
+  {
+    
+    "contestName": "Artistic Expressions",
+    "image": "https://i.ibb.co/xHmPYy1/pexels-photo-8726372.jpg",
+    "attemptedCount": 150,
+    "shortDescription": "Submit your articles exploring the beauty and depth of artistic expressions.",
+    "organizer": "Creative Writers Guild",
+    "name": "Expressions Unleashed",
+    "prize": "Artistic Wordsmith Award",
+    "winning": "https://i.ibb.co/abc456/expressions-winner.jpg",
+    "contestType": "Article",
+    "price": 100
+  },
+  {
+    
+    "contestName": "Cultural Insights",
+    "image": "https://i.ibb.co/4TxgkGY/person23.jpg",
+    "attemptedCount": 80,
+    "shortDescription": "Share your articles delving into diverse cultural perspectives and insights.",
+    "organizer": "Cultural Heritage Society",
+    "name": "Global Perspectives",
+    "prize": "Cultural Harmony Award",
+    "winning": "https://i.ibb.co/ghi012/cultural-winner.jpg",
+    "contestType": "Article",
+    "price": 150
+  },
+
+   {
+    
+    "contestName": "Health and Wellness Challenge",
+    "image": "https://i.ibb.co/D9fYcSm/dhd.webp",
+    "attemptedCount": 120,
+    "shortDescription": "Join the Health and Wellness Challenge to promote a healthy lifestyle.",
+    "organizer": "Wellness Foundation",
+    "name": "Healthy Living Contest",
+    "prize": "Wellness Champion Award",
+    "winning": "https://i.ibb.co/abc456/winner-photo.jpg",
+    "contestType": "Medical",
+    "price": 100
   }
+  
  
 ]
