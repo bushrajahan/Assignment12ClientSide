@@ -17,22 +17,55 @@ const AllContest = () => {
   //   .then(res => res.json())
   //   .then(data => setService(data))
   // },[])
-  const[datas] = useData()
+  const[data,setDatas] = useState([])
+  const[datas] = useData();
+  const[active,setActive] = useState(' ')
+  useEffect(()=>{
+    fetch('http://localhost:300/users')
+    .then(res => res.json())
+    .then(data => setDatas(data))
+  },[])
+
+
   const game = datas.filter(item => item.contestType =='Gaming')
   const Aritcal = datas.filter (item => item.contestType == 'Article')
   const Medical = datas.filter (item => item.contestType == 'Medical')
+  const [categoryInput,setCategoryInput] = useState('')
+  const handleSearch = () =>{
+             fetch(`http://localhost:300/search?contestType=${categoryInput}`)
+             .then(res =>res.json())
+             .then(data =>{ setDatas(data)
+               setActive(data)
+              
+            })
+           
+  }
+
   return (
     <div className='flex  flex-col'>
       
       
       <Advetise></Advetise>
+      <div className="join flex justify-center items-center my-10">
+  <input className="input input-bordered join-item"
+  id='categoryInput'
+  name='categoryInput'
+  value={categoryInput}
+  onChange={(e) => {
+    const inputValue = e.target.value;
+    const firstLetterCapitalized = inputValue.charAt(0).toUpperCase() + inputValue.slice(1).toLowerCase();
+    setCategoryInput(firstLetterCapitalized);
+  }}
+  placeholder="search............"/>
+  <button className="btn join-item rounded-r-full bg-orange "  onClick={()=>handleSearch()}>Search</button>
+</div>
      <div className='flex justify-center items-center '> 
      <div role="" className="tabs  tabs-boxed ">
   <input type="radio" name="my_tabs_1" role="tab" className="tab text-orange-500 lg:ml-[590px]" aria-label="ALL" defaultChecked />
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
-          datas.map(service =>
+          data.map(service =>
                <Services key={service.id} data={service}></Services>
             
             )
@@ -40,8 +73,8 @@ const AllContest = () => {
 
        </div>
   </div>
-
-  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Gaming" />
+ 
+  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Gaming"  />
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
@@ -54,7 +87,7 @@ const AllContest = () => {
        </div>
   </div>
 
-  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Artical" />
+  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Article"/>
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
@@ -66,7 +99,7 @@ const AllContest = () => {
 
        </div>
   </div>
-  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Medical" />
+  <input type="radio" name="my_tabs_1" role="tab" className="tab mx-auto" aria-label="Medical"  />
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
@@ -79,6 +112,7 @@ const AllContest = () => {
        </div>
   </div>
 </div>
+
      </div>
        
     </div>

@@ -1,147 +1,136 @@
-import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../Components/useAxiosSecure';
+import useCart from '../../Components/useCart';
 import UseAuth from '../../Components/Auth/UseAuth';
+import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckOut = () => {
-  const [error, setError] = useState('');
-  const {user} = UseAuth()
+ 
   const stripe = useStripe();
   const elements = useElements();
-  const{id} = useParams();
-  const [data,setDatas] = useState({})
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/users/${id}`);
-        const fetchedData = await response.json();
-
-        // Check if fetchedData is an array and not empty
-        if (Array.isArray(fetchedData) && fetchedData.length > 0) {
-          setDatas(fetchedData[0]);
-        } else {
-          console.error("Empty or invalid data received:", fetchedData);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  const handlePaymentSuccess = async () => {
-    toast.success('Payment successful!', {
-      position: 'top-right',
-      autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-    // Assuming you have a formData object to send
-    const formData = {
-      // Your form data here
-        name:data.contestName,
-        image:data.image,
-        desc:data.shortDescription,
-        type:data.contestType,
-        winning:data.winnning>0?data.winning:user?.displayName,
-         price:data.price,
-         prize:data.prize,
-         email:user?.email,
-         Email:data.email
-        
-      
-    };
-
-    try {
-      const response = await fetch('http://localhost:3000/pay', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+  const [clientSecret,setClientSecret] = useState([])
+  const [transactionId,setTransactionId] = useState('')
+  const [error,setError] = useState([])
+   const axiosSecure = useAxiosSecure();
+   const {user} = UseAuth();
+   const {id} = useParams();
+   console.log(id)
+   const [data,setData] = useState([])
+   useEffect(()=>{
+    fetch(`https://assignment12-client-side-from.vercel.app/users/${id}`)
+    .then(res =>res.json())
+    .then(data =>setData(data))
+   },[id])
+   console.log(data,data.contestName)
+   const formData ={
+    name:user?.displayName,
+    email:user?.email,
+    price:data[0]?.price,
+    Email:data[0]?.email,
+    contestType:data[0]?.contestType,
+    contestName:data[0]?.contestName,
+    hours:data[0]?.hours,
+  
+    status:'pending'
+    }
+    const Update = {
+       attemptedCount: data[0]?.attemptedCount  + 1
+    }
+    console.log(data[0]?.attemptedCount)
+  
+  const handleSubmit = async(event) =>{
+    event.preventDefault()
+    if(!stripe || !elements){
+      return;
+    }
+    const card = elements.getElement(CardElement)
+    if(card === 'null'){
+      return
+    }
+    const {error,paymentMethod} = await stripe.createPaymentMethod({
+      type: 'card',
+      card
+    })
+    if(error){
+      console.log('payment Method',error)
+      setError(error.message);
+    }else{
+      toast.success('Payment successful!', {
+        position: "top-right",
+        autoClose: 3000, // Duration in milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log('payment Method',[paymentMethod ])
+      fetch('http://localhost:300/payments',{
+        method:'post',
+        headers:{
+          "Content-Type":'application/json',
         },
-        body: JSON.stringify(formData),
+        body:JSON.stringify(formData)
+      })
+      .then((res)=> res.json())
+      .then(data =>setData(data))
+      
+      fetch(`http://localhost:300/users/${id}`,{
+        method:'PUT',
+        headers:{
+          "Content-Type":'application/json',
+        },
+        body:JSON.stringify(Update)
+      })
+      .then((res)=> res.json())
+      .then(data =>console.log(data))
+
+
+      setError('');
+      toast.success('Payment successful!', {
+        position: "top-right",
+        autoClose: 3000, // Duration in milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to send data to the server');
-      }
-
-      const data = await response.json();
-       if(data.insertedId){
-        toast.success('data is added to the database')
-       }
-    } catch (error) {
-      console.error('Error sending data to the server:', error);
+   
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    const card = elements.getElement(CardElement);
-
-    if (!card) {
-      return;
-    }
-
-    try {
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: card,
-      });
-
-      if (error) {
-        console.error('Payment error:', error);
-        setError(error.message || 'Payment failed');
-      } else {
-        console.log('Payment method:', paymentMethod);
-        setError('');
-        handlePaymentSuccess();
-        // Handle successful payment, e.g., send paymentMethod.id to your server
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Payment failed. Please try again.');
-    }
-  };
-
+ 
+  }
   return (
-    <>
+    <div>
+    <ToastContainer></ToastContainer>
       <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: '16px',
-                color: '#424770',
-                '::placeholder': {
-                  color: '#aab7c4',
-                },
-              },
-              invalid: {
-                color: '#9e2146',
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#424770',
+              '::placeholder': {
+                color: '#aab7c4',
               },
             },
-          }}
-        />
-        <button className='btn bg-orange-400 p-2' type="submit" disabled={!stripe}>
-          Pay
-        </button>
-        {error && <p className='text-red-500'>{error}</p>}
+            invalid: {
+              color: '#9e2146',
+            },
+          },
+        }}
+      />
+      <button className='btn btn-primary my-2' type="submit" disabled={!stripe || !clientSecret}>
+        Pay
+      </button>
+      <p className='text-red-600'>{error}</p>
+      {transactionId && <p className='text-green-400'>Your transaction id</p>}
       </form>
-      <ToastContainer />
-    </>
+    </div>
   );
 };
 

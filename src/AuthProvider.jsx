@@ -10,9 +10,15 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "./pages/firebase.config";
 
+import useAxiosPublic from "./Components/useAxiosPublic";
+
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
+const axiosPublic = useAxiosPublic();
+
+
+
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -38,13 +44,22 @@ const AuthProvider = ({ children }) => {
   };
 
   //update profile
-  const handleUpdateProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    });
+  const handleUpdateProfile = async (name, photo) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photo,
+      });
+  
+      setUser(auth.currentUser);
+      // Additional logic if needed
+  
+      // Force a reload of the entire page
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
-
   //using observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -56,9 +71,17 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       if(currentUser){
        //get token and store client
+       const userInfo = {email : currentUser.email};
+       axiosPublic.post('/jwt',userInfo)
+       .then(res =>{
+        if(res.data.token){
+          localStorage.setItem('access-token',res.data.token)
+        }
+       })
       }
       else{
         //do something
+        localStorage.removeItem('access-token')
       }
 
       console.log(user);

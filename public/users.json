@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Competitive Programming Contest",
+    "image": "https://i.ibb.co/16D3B4h/coding.jpg",
+    "price": 29.99,
+    "details": "Join our upcoming competitive programming contest and showcase your problem-solving skills. Solve algorithmic challenges and compete with programmers from around the world. Get a chance to win exciting prizes and enhance your coding expertise."
+  },
+  {
+    "title": "Hackathon Event",
+    "image": "https://i.ibb.co/JsnLwyR/hackathon.jpg",
+    "price": 49.99,
+    "details": "Participate in our upcoming hackathon event where you can collaborate with fellow developers to build innovative solutions. Tackle real-world problems, unleash your creativity, and compete for cash prizes. Don't miss this opportunity to network and learn from industry experts."
+  },
+  {
+    "title": "Design Contest",
+    "image": "https://i.ibb.co/HXj6qRF/designing-contest.jpg",
+    "price": 79.99,
+    "details": "Showcase your design skills in our upcoming design contest. Whether it's graphic design, UI/UX, or product design, this contest is the perfect platform to exhibit your creativity. Compete with designers globally, receive constructive feedback, and stand a chance to win recognition and valuable prizes."
+  }
+]

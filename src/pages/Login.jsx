@@ -23,6 +23,8 @@ const Login = () => {
       .catch(err => {
         // Handle error
       });
+
+
   };
 
   const handleSubmit = async (e) => {

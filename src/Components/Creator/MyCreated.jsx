@@ -1,207 +1,179 @@
-import React, { useContext } from "react";
-import ReactDatePicker from "react-datepicker";
-// import { AuthContext } from "../AuthProvider/AuthProvider";
-// import swal from "sweetalert"; // Import SweetAlert
-import UseAuth from "../Auth/UseAuth";
-import Swal from "sweetalert2";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
- 
-  const MyCreated = () => {
-    const { user } = UseAuth();
-    const navigate = useNavigate()
-    const { displayName, email } = user;
-    const contestTags = ['Medical Contest', 'Article Writing', 'Gaming'];
-    const handleClick =() =>{
-        navigate(`/dashboard/mycreated`)
+import ReactDOM from "react-dom";
+import { useForm } from "react-hook-form";
+import { FaAd, FaAdn } from "react-icons/fa";
+import useAxiosPublic from "../useAxiosPublic";
+import DatePicker from "react-datepicker";
+import UseAuth from "../Auth/UseAuth";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const MyCreated = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const { register, handleSubmit } = useForm();
+  const {user} = UseAuth()
+
+  const image_hoisting_key = 'b275e6870f52a5447358b1f6193ee956';
+  console.log(image_hoisting_key)
+  const image_hoisting_api =`https://api.imgbb.com/1/upload?key=${image_hoisting_key}`
+
+  //image upload to the imgbb and then get the url and send it to the database
+  const axiosPublic = useAxiosPublic()
+  const onSubmit = async(data) =>{ console.log(data)
+  const imageFile = {image: data.img[0]}
+
+    const res = await axiosPublic.post(image_hoisting_api,imageFile,{
+      headers:{        
+        'Content-Type':'multipart/form-data'
+       }
+    })
+    console.log(res.data)
+    if(res.data.success){
+      //now the send message to the server use the url 
+      const Data = {
+       contestName:data.name,
+       image:res.data.data.display_url,
+       shortDescription:data.details,
+       attemptedCount:0,
+       price:data.price,
+       prize:data.prize,
+       contestType:data.category,
+       winnning:data.prizeMoney,
+       email:user?.email,
+       name:user?.displayName,
+       hours:data.date,
+       status:'pending'
+      
+      }
+      console.log(Data)
+      fetch(`http://localhost:300/add`,{
+        method:'POST',
+        headers:{
+          "Content-Type":'application/json',
+        },
+        body:JSON.stringify(Data)
+      })
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+  
+        if (data.insertedId) {
+          toast.success('Data Added successfully!', {
+            position: 'top-right',
+            autoClose: 3000, // Adjust the duration
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        } else {
+          toast.error('Failed to submit data. Please try again.', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+      });
+  }
+
+      
+
     }
 
-    const handleSubmit = (e) => {
 
-     
-      e.preventDefault();
-      const form = e.target;
-      const attemptCount =0;
-      const name = form.name.value;
-      const image = form.image.value;
-      const catagory = form.tag.value;
-      const desc = form.Description.value;
-      const price = form.price.value;
-      const prize = form.prize.value;
-      const hours = form.hours.value;
-      const instruction = form.instruction.value;
-      const winning = user?.displayName;
-      const status ='pending'
-      const formData = {
-       contestName: name,
-       attemptCount,
-        image,
-       contestType: catagory,
-        price,
-        displayName,
-        email,
-        prize,
-        desc,
-        instruction,
-        shortDescription:desc,
-        hours,
-        winning,
-        status
-        
-      };
-      fetch("http://localhost:3000/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          // Create SweetAlert instance on success
-          Swal.fire("Success!", "Your item has been added successfully.", "success");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          // Create SweetAlert instance on error
-          Swal.fire("Error!", "There was an error adding your item.", "error");
-        });
-        
-    };
-  
+
   return (
     <div>
-      <section className="max-w-4xl p-6 text-pink-700 mx-auto  rounded-md shadow-xl  mt-20">
-        <h1 className="text-xl font-bold text-center font-grand capitalize dark:text-white">
-          Add Items
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="name">
-                Contest Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="name"
-                placeholder="Name"
-                required
-              />
-            </div>
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="FoodImage">
-                 Image
-              </label>
-              <input
-                id="Image"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="image"
-                placeholder="Image"
-                required
-              />
-            </div>
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="catagory">
-                Contest Description
-              </label>
-              <input
-                id="Description"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="catagory"
-                placeholder="Description"
-                required
-              />
-            </div>
+         <ToastContainer />
+      <form className="mx-6 text-bold text-pink-600 font-jost " onSubmit={handleSubmit(onSubmit)}>
+        <label>Contest Name</label>
 
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="productPrice">
-               Contest price
-              </label>
-              <input
-                id="productPrice"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="price"
-                placeholder="price"
-                required
-              />
-            </div>
-
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="prize">
-                Prize Money
-              </label>
-              <input
-                id="Prize"
-                type="number"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="prize"
-                placeholder="prize Money"
-            
-              />
-            </div>
-
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="BuyerEnail">
-                Instruction
-              </label>
-              <input
-                id="BuyerEmail"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="instruction"
-                placeholder="Instruction"
-                
-              />
-            </div>
-            <div>
-            <select
-                id="catagory"
-                name="tag"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                placeholder="Contest Type"
-              >
-                <option value="" disabled>Select Contest Type/Tags</option>
-                {contestTags.map((tag) => (
-                  <option key={tag} value={tag}>
-                    {tag}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <label className="form-control w-full  ">
          
-            <div>
-              <label className=" dark:text-gray-200" htmlFor="prize">
-                Hours
-              </label>
-              <input
-                id="hours"
-                type="number"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                name="hours"
-                placeholder="Hours"
-            
-              />
-            </div>
-
-       
-          </div>
-
-          <button
-            type="submit"
-            className="mt-6 px-4 py-2 font-bold text-white bg-pink-700 rounded-full hover-bg-green-700 focus:outline-none focus:ring"
-          >
-            Add Item
-          </button>
-        </form>
+          <input
+            type="text"
+            placeholder="Contest Name"
+            {...register('name', {required:true})}
+            className="input input-bordered w-full"
+          />
       
-      </section>
+        </label>
+        <div className="flex gap-2 ">
+        <label className="form-control w-full ">
+  <label htmlFor="">Category</label>
+  <select {...register('category',{required:true})} className="select select-bordered">
+    <option disabled selected>Category</option>
+    <option>Gaming</option>
+    <option>Article</option>
+    <option>Medical</option>
+    
+  </select>
+ 
+</label>
+{/* price */}
+
+
+        <label className="form-control w-full ">
+        <label>price</label>
+          <input
+            type="number"
+            placeholder="price"
+            {...register('price',{required:true})}
+            className="input input-bordered w-full"
+          />
+      
+        </label>
+        <label className="form-control w-full ">
+        <label>Contest Prize</label>
+          <input
+            type="text"
+            placeholder="prize"
+            {...register('prize',{required:true})}
+            className="input input-bordered w-full"
+          />
+      
+        </label>
+        <label className="form-control w-full ">
+        <label>prize Money</label>
+          <input
+            type="number"
+            placeholder="PrizeMoney"
+            {...register('prizeMoney',{required:true})}
+            className="input input-bordered w-full"
+          />
+      
+        </label>
+        </div>
+        <label className="form-control">
+  <div className="label">
+    <span className="label-text">Details</span>
+   
+  </div>
+  <textarea {...register('details',{required:true})} className="textarea textarea-bordered h-24" placeholder="Details"></textarea>
+
+</label>
+  <div>
+    <label className="">Image</label>
+    <p></p>
+<input {...register('img',{required:true})} type="file" className="my-4 file-input w-full bg-yellow-400 max-w-xs" />
+<br />
+<label htmlFor="" className="block ">Date</label>
+ 
+
+<input type="date" {...register('date',{required:true}) } />
+
+  </div>
+ 
+
+       <button className="btn bg-yellow-300 my-4">
+        AddItem
+        <FaAd></FaAd>
+       </button>
+      </form>
     </div>
   );
 };

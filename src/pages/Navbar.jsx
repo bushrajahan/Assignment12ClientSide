@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import Button from "../Components/Button";
 import useCart from "../Components/useCart";
+import UseAuth from "../Components/Auth/UseAuth";
+import UserProfile from "./UserProfile";
 const Navbar = () => {
+  const navigate = useNavigate()
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const {user} = UseAuth()
   const [cart] = useCart()
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+  const handleClick = () =>{
+    navigate(`/leaderboard`)
+  }
   const navitems = (
     <>
       <div className="lg:flex  ">
@@ -35,26 +42,33 @@ const Navbar = () => {
             All contest
           </NavLink>
         </li>
-        <li className="">
-          {" "}
-          <NavLink
-            to={`/login`}
-            className={({ isActive, isPending }) =>
-              isActive ? "active " : isPending ? "pending" : ""
-            }
-          >
-            Login
-          </NavLink>
-        </li>
+        <li className='flex justify-center items-center'>
+                {
+                  user?  <div className=''><UserProfile /></div>:
+                  <NavLink
+                  to={`/login`}
+                  className={({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                      ? "pending"
+                      : ""
+                  }
+                  
+                >
+                Login
+                </NavLink>
+                }
+                </li>
       </div>
     </>
   );
 
   return (
-    <div>
+    <div className="">
       <div className="drawer z-10   text-white bg-black ">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col justify-between items-center ">
+        <div className="drawer-content md:flex flex-col justify-between items-center ">
           {/* Navbar */}
           <div className="w-full flex justify-between items-center navbar">
             <div className=" lg:hidden">
@@ -81,7 +95,7 @@ const Navbar = () => {
             </div>
             <div className="px-2 mx-2 font-popi text-4xl font-bold  ">
               <img
-                className="w-44 bg-black p-3"
+                className="w-10 md:w-44 bg-black p-3"
                 src="https://i.ibb.co/G5mYgXS/logo-light.png"
                 alt=""
               />
@@ -96,18 +110,18 @@ const Navbar = () => {
             <div>
              <Link to='/dashboard/cart'>
                
-             <button className="bg-white flex gap-2 text-black p-2 m-4 rounded-md">
+             <button className="bg-white md:flex gap-2 text-black p-2 m-4 rounded-md">
                 {" "}
                 <BsCart3 />
                 <div className="badge bg-black text-white ">{cart.length}</div>
               </button>
              </Link>
-              <button className="bg-white  text-black p-2 m-4 rounded-md">
+              {/* <button className="bg-white  text-black p-2 m-4 rounded-md">
                 {" "}
-                <FaUser />
-              </button>
-              <button className="">
-                <Button text={"CAR GIVEWAY"}></Button>
+             
+              </button> */}
+              <button onClick={()=>handleClick()} className="bg-orange-400 p-2 text-white">
+               LeaderBoard
               </button>
             </div>
           </div>

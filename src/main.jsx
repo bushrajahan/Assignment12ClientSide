@@ -33,6 +33,16 @@ import Details from "./Components/Details/Details";
 import Payment from "./pages/Payment/Payment";
 import ContestSubmitted from "./Components/Creator/ContestSubmitted";
 import Update from "./Components/Creator/Update";
+import MyParticiping from "./Components/User/MyParticiping";
+import MyWinning from "./Components/User/MyWinnig";
+import { Profiler } from "react";
+import MyProfile from "./Components/User/MyProfile";
+import Privateroute from "./PrivateRoute";
+import Card from "./Components/Card";
+import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
+import { DataShow } from "./pages/DataShow";
+import WinnersList from "./Components/ALLwinner/ALLwinner";
+import PaymrntHistory from "./pages/paymrntHistory/PaymrntHistory";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -56,6 +66,10 @@ const router = createBrowserRouter([
         element:<Banner></Banner>
       },
       {
+        path:'/datashow',
+        element:<DataShow></DataShow>
+      },
+      {
         path:'/allContest',
         element:<AllContest></AllContest>
       },
@@ -72,13 +86,29 @@ const router = createBrowserRouter([
         element:<Register></Register>
       },
       {
+        path:'/card',
+        element:<Card></Card>
+      },
+      {
+        path:'/leaderboard',
+        element:<LeaderBoard></LeaderBoard>
+      },
+      {
          path:'/details/:id',
-         element:<Details></Details>
+         element:<Privateroute><Details></Details></Privateroute>
       },
      {
        path:'/payment/:id',
        element:<Payment></Payment>
      },
+     {
+      path:'/winner',
+      element:<WinnersList></WinnersList>
+    },
+    {
+      path:'/pay',
+      element:<PaymrntHistory></PaymrntHistory>
+    },
  
       {
         path:'/dashboard',
@@ -112,6 +142,18 @@ const router = createBrowserRouter([
           {
             path:'/dashboard/update/:id',
             element:<Update></Update>
+          },
+          {
+            path:'/dashboard/participate',
+            element:<MyParticiping></MyParticiping>
+          },
+          {
+            path:'/dashboard/myWinning',
+            element:<MyWinning></MyWinning>
+          },
+          {
+            path:'/dashboard/profile',
+            element:<MyProfile></MyProfile>
           }
         ]
       }
@@ -120,7 +162,8 @@ const router = createBrowserRouter([
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <div className=" mx-auto">
+  <div className="max-w-7xl mx-auto">
+ 
      <QueryClientProvider client={queryClient}>
      <AuthProvider>
 <React.StrictMode>
@@ -128,6 +171,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
   </AuthProvider>
     </QueryClientProvider>
-
+ 
   </div>
 );

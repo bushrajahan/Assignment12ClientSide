@@ -11,35 +11,40 @@ import useData from '../Components/Hook/UseData';
 
 
 
+// ... (your existing imports)
+
+
 const PopularContest = () => {
   const [datas] = useData([]);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    // Sort datas array based on attemptedCount in descending order
+    const sortedData = [...datas].sort((a, b) => b.attemptedCount - a.attemptedCount);
+    setSortedData(sortedData);
+  }, [datas]);
 
+  const [sortedData, setSortedData] = useState([]);
 
   return (
     <div className='text-center my-20'>
       <Title className='text-center' text={'POPULAR'} win={'CONTEST'}></Title>
       <div className=' bg-slate-50 my-20'>
-      <Swiper
-        
-        spaceBetween={30}
-    
-        pagination={{
-          clickable: true,
-        }}
-        modules={[EffectCoverflow,Autoplay]}
-    
-        className="mySwiper"
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false, // Allow user interaction to pause autoplay
-        }}
-        breakpoints={
-          {
-            640:{
-              slidesPerView:1,
-              spaceBetween:20,
+        <Swiper
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[EffectCoverflow, Autoplay]}
+          className="mySwiper"
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 0,
             },
             768: {
               slidesPerView: 3,
@@ -49,14 +54,12 @@ const PopularContest = () => {
               slidesPerView: 4,
               spaceBetween: 50,
             },
-            
-          }
-        }
-      >
+          }}
+        >
           {error ? (
             <p>Error fetching data: {error.message}</p>
           ) : (
-            datas.slice(0, 6).map((data) => (
+            sortedData.slice(0, 6).map((data) => (
               <SwiperSlide key={data.id}>
                 <Card data={data} />
               </SwiperSlide>
