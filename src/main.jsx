@@ -43,6 +43,7 @@ import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
 import { DataShow } from "./pages/DataShow";
 import WinnersList from "./Components/ALLwinner/ALLwinner";
 import PaymrntHistory from "./pages/paymrntHistory/PaymrntHistory";
+import SignleWinner from "./Components/Creator/SignleWinner";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -109,10 +110,14 @@ const router = createBrowserRouter([
       path:'/pay',
       element:<PaymrntHistory></PaymrntHistory>
     },
+    {
+      path:'/singlepay',
+      element:<SignleWinner></SignleWinner>
+    },
  
       {
         path:'/dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<Privateroute><Dashboard></Dashboard></Privateroute>,
         children:[
           {
             path:'/dashboard/cart',
@@ -162,7 +167,7 @@ const router = createBrowserRouter([
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <div className="max-w-7xl mx-auto">
+  <div className="">
  
      <QueryClientProvider client={queryClient}>
      <AuthProvider>

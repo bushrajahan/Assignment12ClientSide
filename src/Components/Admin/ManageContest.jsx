@@ -45,120 +45,87 @@ const ManageContest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
-    
-          // Make a DELETE request to the server
-      
-            fetch(`http://localhost:300/users/${id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              // Update the user state by removing the deleted user
-              setError((prevUsers) => prevUsers.filter((user) => user._id !== id))
-              // Show success message
-              Swal.fire("Deleted!", "The user has been deleted.", "success")
-            })
-            .catch((error) => {
-              console.error("Error deleting user:", error)
-              // Show error message
-              Swal.fire("Error", "Could not delete the user.", "error")
-            })
-
-
-
-
-
-        // Make a DELETE request to the server
-    
-          fetch(`http://localhost:300/add/ad/${id}`, {
+        // Make a DELETE request to the server for users
+        fetch(`http://localhost:300/users/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        // Make a DELETE request to the server for add/ad
+        fetch(`http://localhost:300/add/ad/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             // Update the user state by removing the deleted user
-            setUser((prevUsers) => prevUsers.filter((user) => user._id !== id))
+            setUser((prevUsers) => prevUsers.filter((user) => user._id !== id));
             // Show success message
-            Swal.fire("Deleted!", "The user has been deleted.", "success")
+            Swal.fire("Deleted!", "The user has been deleted.", "success");
           })
           .catch((error) => {
-            console.error("Error deleting user:", error)
+            console.error("Error deleting user from add/ad:", error);
             // Show error message
-            Swal.fire("Error", "Could not delete the user.", "error")
+            Swal.fire("Error", "Could not delete the user from add/ad.", "error");
           });
-
-
       }
     });
   };
-  const handleConfirm = (data,id) => {
-    console.log(data,id);
-
-      const filteredData = Error.find(data => data._id === id);
-      console.log(filteredData);
-     if(filteredData){ 
-      
+  
+  const handleConfirm = (data, id) => {
+    const filteredData = Error.find((item) => item._id === id);
+  
+    if (filteredData) {
       Swal.fire({
         title: "OOPs!!!",
         text: "Data is already added!",
         icon: "warning",
         showCancelButton: true,
-       
         cancelButtonColor: "#3085d6",
-     
-      }) 
-    }
-    else {
-
-
+      });
+    } else {
+      // Remove the _id property from the data object
+      const { _id, ...postData } = data;
+  
       fetch("http://localhost:300/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(postData),
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-         if(data.error){
-
-          // Display an error message
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'data is already exist',
-      });
-    } else {
-      // Display a success message
-      Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'data added successfully!',
-      });
+        .then((responseData) => {
+          if (responseData.error) {
+            // Display an error message
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Data already exists",
+            });
+          } else {
+            // Display a success message
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Data added successfully!",
+            });
+            // Refresh the user data after successful addition
+            fetch(`http://localhost:300/add`)
+              .then((res) => res.json())
+              .then((data) => setUser(data))
+              .catch((error) => console.error("Error fetching data:", error));
+          }
+        })
+        .catch((error) => {
+          console.error("Error adding data:", error);
+          // Show error message
+          Swal.fire("Error", "Could not add data.", "error");
+        });
     }
-  })
-      fetch(`http://localhost:300/add/ad/status/${data._id}`, {
-        method: "PUT", // or 'PATCH' depending on your server implementation
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-        
-          status: data.status// Modify this based on your server data structure
-        }),
-      })
-      .then((res) => res.json())
-      .then((responseData) => {
-        console.log(responseData);
-        // Display success message using SweetAlert
-      })
-
-    
-    }
-     
   };
+  
 
   return (
     <div>

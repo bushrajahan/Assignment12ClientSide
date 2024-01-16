@@ -1,17 +1,37 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import UseAuth from "../Auth/UseAuth";
+import { useNavigate } from "react-router-dom";
 
 const ContestSubmitted = () => {
-  const [data, setData] = useState([]);
+  const [Data, setData] = useState([]); // Initialize data as an empty array
   const { user } = UseAuth();
+  const [loading, setLoading] = useState(true);
+  const navigete = useNavigate()
   useEffect(() => {
-    fetch(
-      `https://assignment12-client-side-from.vercel.app/day?email=${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    fetch(`http://localhost:300/payments/pay/p/${user.email}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setData([data]); // Convert object to array
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, [user?.email]);
-  console.log(data);
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
+  const handleWinner = () =>{
+    navigete(`/singlepay`)
+  }
+  
   return (
     <div>
       <div className="overflow-x-auto">
@@ -22,24 +42,25 @@ const ContestSubmitted = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
+              <th>Price</th>
+              <th>ContestType</th>
+              <th>Status</th>
               <th>Winner</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            {data.length > 0 ? (
-              data.map((datas, index) => (
-                <tr key={datas._id}>
-                  <th>{index}</th>
-                  <td>{datas.name}</td>
-                  <td>{datas.type}</td>
-                  <td>{datas.winning}</td>
-                </tr>
-              ))
-            ) : (
-              <p>Loading.......</p>
-            )}
-            {/* row 2 */}
+            {/* rows */}
+            {Data.map((item, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td> {/* Adding 1 to index to start from 1 */}
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.price}</td>
+                <td>{item.contestType}</td>
+                <td>{item.status}</td>
+                <td className="btn btn-warning text-white" onClick={handleWinner}>SetWinner</td> {/* Replace with the actual property name */}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

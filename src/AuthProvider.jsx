@@ -11,6 +11,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { auth } from "./pages/firebase.config";
 
 import useAxiosPublic from "./Components/useAxiosPublic";
+import axios from "axios";
 
 
 export const AuthContext = createContext(null);
@@ -65,23 +66,28 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user?.email;
       const loggedEmail = { email: userEmail };
-
+    
       setUser(currentUser);
       console.log("CTT", currentUser);
       setLoading(false);
       if(currentUser){
-       //get token and store client
-       const userInfo = {email : currentUser.email};
-       axiosPublic.post('/jwt',userInfo)
-       .then(res =>{
-        if(res.data.token){
-          localStorage.setItem('access-token',res.data.token)
-        }
-       })
+         const loggedUser = {email: currentUser.email};
+         axios.post('http://localhost:300/jwt',loggedUser,{withCredentials:true})
+         .then(res =>{
+            console.log('token-response',res.data)
+         })
+      
       }
       else{
         //do something
-        localStorage.removeItem('access-token')
+        
+        axios.post('http://localhost:300/logout',loggedEmail,{
+          withCredentials:true
+        })
+        .then(res => {
+          console.log('token response ',res.data)
+        })
+      
       }
 
       console.log(user);

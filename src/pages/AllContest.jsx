@@ -17,15 +17,36 @@ const AllContest = () => {
   //   .then(res => res.json())
   //   .then(data => setService(data))
   // },[])
+
+  
   const[data,setDatas] = useState([])
   const[datas] = useData();
   const[active,setActive] = useState(' ')
+  const [total,setTotal] = useState([])
+  const [currentage,setCurrentPage] = useState(0)
   useEffect(()=>{
-    fetch('http://localhost:300/users')
+    fetch(`http://localhost:300/usersCount`)
+    .then(res => res.json())
+    .then(data => setTotal(data))
+  },[])
+  console.log(total)
+  const {count} = total
+  const itemsPerPage = 10;
+  const numberOfPage = Math.ceil(count/itemsPerPage)
+  let  pages  = []
+  for(let i=0;i<numberOfPage;i++){
+    pages.push(i)
+  
+  console.log(pages)
+    pages = [...Array(numberOfPage).keys()]
+  }
+
+  useEffect(()=>{
+    fetch(`http://localhost:300/users/use?page=${currentage}&size=${itemsPerPage}`)
     .then(res => res.json())
     .then(data => setDatas(data))
-  },[])
-
+  },[currentage,itemsPerPage])
+ console.log(data)
 
   const game = datas.filter(item => item.contestType =='Gaming')
   const Aritcal = datas.filter (item => item.contestType == 'Article')
@@ -38,7 +59,21 @@ const AllContest = () => {
                setActive(data)
               
             })
+
+
            
+  }
+  const handleItemPerPage =() =>{
+
+  }
+  const handlePre = () =>{
+    if(currentage>0){
+        setCurrentPage(currentage -1)
+    }
+  }
+  const handleNext = ()=>{
+    if(currentage<pages.length-1 )
+    setCurrentPage(currentage+1);
   }
 
   return (
@@ -65,7 +100,7 @@ const AllContest = () => {
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
-          data.map(service =>
+          data?.map(service =>
                <Services key={service.id} data={service}></Services>
             
             )
@@ -78,7 +113,7 @@ const AllContest = () => {
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
-          game.map(service =>
+          game?.map(service =>
                <Services key={service.id} data={service}></Services>
             
             )
@@ -91,7 +126,7 @@ const AllContest = () => {
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
-          Aritcal.map(service =>
+          Aritcal?.map(service =>
                <Services key={service.id} data={service}></Services>
             
             )
@@ -103,7 +138,7 @@ const AllContest = () => {
   <div role="tabpanel" className="tab-content p-10">
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-base-200  shadow-xl'>
         {
-          Medical.map(service =>
+          Medical?.map(service =>
                <Services key={service._id} data={service}></Services>
             
             )
@@ -114,7 +149,20 @@ const AllContest = () => {
 </div>
 
      </div>
+        <div className='text-center mx-2 bg-yellow-400'>
+
+        <button onClick={handlePre}>pre</button>
+          {
        
+            pages?.map(page =>
+                <button
+                className={currentage === page?'bg-white text-black p-2 mx-2':'bg-inherit text-white p-2 mx-2'}
+                onClick={() => setCurrentPage(page)}
+                key={page}  onChange={handleItemPerPage}>{page}</button>
+              )
+          }
+          <button onClick={handleNext}>Next</button>
+        </div>
     </div>
  
   );

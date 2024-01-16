@@ -57,6 +57,12 @@ const Home = () => {
           <p className='font-jost text-white'>Are you a medical professional, researcher, or entrepreneur with a passion for innovation and a drive to improve healthcare? Then this medical contest is for you!</p>
           <div className='mt-10'>
             <button className='bg-orange-400 p-2 text-white' onClick={handleClick}>GET STARTED</button>
+            <div className=' mt-7'>
+           <div className="join">
+           <input className="input input-bordered join-item" placeholder="search here" onChange={handleClick}/>
+           <button className="btn join-item rounded-r-full bg-orange-400 text-white">Search</button>
+          </div>
+           </div>
           </div>
           
         </div>
@@ -73,6 +79,12 @@ const Home = () => {
           <p className='font-jost text-white'>Are you a wordsmith who loves to express your thoughts and ideas through writing? Then this article writing contest is for you!</p>
           <div className='mt-10'>
             <button className='bg-orange-400 p-2 text-white' onClick={handleClick}>GET STARTED</button>
+            <div className=' mt-7'>
+           <div className="join">
+           <input className="input input-bordered join-item" placeholder="search here" onChange={handleClick}/>
+           <button className="btn join-item rounded-r-full bg-orange-400 text-white">Search</button>
+          </div>
+           </div>
           </div>
         </div>
       </div>

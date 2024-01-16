@@ -106,7 +106,7 @@ const MyCreated = () => {
         <label className="form-control w-full ">
   <label htmlFor="">Category</label>
   <select {...register('category',{required:true})} className="select select-bordered">
-    <option disabled selected>Category</option>
+    <option disabled value='default'>Category</option>
     <option>Gaming</option>
     <option>Article</option>
     <option>Medical</option>

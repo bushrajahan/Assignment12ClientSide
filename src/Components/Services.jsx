@@ -39,7 +39,7 @@ const Services = ({ data }) => {
         organizer,
         motivation,
         winning,
-        prize,
+        prize
       };
       axios.post("https://assignment12-client-side-from.vercel.app/carts", cartItem).then((res) => {
         console.log(res.data);

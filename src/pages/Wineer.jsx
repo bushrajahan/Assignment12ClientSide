@@ -21,7 +21,7 @@ const Wineer = () => {
         modules={[ EffectCoverflow, Autoplay]}
         className="mySwiper"
         autoplay={{
-          delay: 1000,
+          delay: 4000,
           disableOnInteraction: false, // Allow user interaction to pause autoplay
         }}
         breakpoints={{
@@ -39,7 +39,7 @@ const Wineer = () => {
           },
         }}
       >
-        {datas.map((data) => (
+        {datas.slice(0,4).map((data) => (
           <SwiperSlide key={data.id}>
             <WinnerComp data={data} />
           </SwiperSlide>

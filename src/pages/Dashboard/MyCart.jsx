@@ -8,9 +8,11 @@ import useAxiosSecure from "../../Components/useAxiosSecure";
 import UseAuth from "../../Components/Auth/UseAuth";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider";
+import { Navigate, useNavigate } from "react-router-dom";
 const MyCart = () => {
   const [cart, refetch] = useCart();
   const { user } = UseAuth();
+  const navigate = useNavigate()
   // console.log(user)
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   const axiosSecure = useAxiosSecure();
@@ -41,12 +43,16 @@ const MyCart = () => {
       }
     });
   };
+  const handlePay = (id) =>{
+    
+    navigate(`/payment/${id}`)
+  }
   return (
     <div>
       <div className="text-black flex  justify-evenly">
         <Title text="MY " win="CART" className=""></Title>
         <h2 className="text-4xl   font-jost">Total Price :{totalPrice}</h2>
-        <Button text="Pay"></Button>
+     
       </div>
       <div>
         <div className="overflow-x-auto">
@@ -59,6 +65,7 @@ const MyCart = () => {
                 <th>Name</th>
                 <th>price</th>
                 <th>Action</th>
+                <th>pay</th>
               </tr>
             </thead>
             <tbody>
@@ -94,6 +101,9 @@ const MyCart = () => {
                     <button onClick={() => handleDelete(item._id)}>
                       <FaTrash className="text-red-500" />
                     </button>
+                  </th>
+                  <th>
+                  <button className='btn bg-yellow-400 text-white m-2 p-2' onClick={()=>handlePay(item._id)}>Pay </button>
                   </th>
                 </tr>
               ))}

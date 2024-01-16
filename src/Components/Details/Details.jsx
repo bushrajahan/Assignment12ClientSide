@@ -6,40 +6,56 @@ import WinnersList from "../ALLwinner/ALLwinner";
 import Timer from "../ALLwinner/Timer";
 
 const Details = () => {
+
+  //date to hours 
+
+
+
   let  count =0 ;
-   count =count +1;
-  const navigate = useNavigate();
-  const [data, setDatas] = useState({});
-  const { id } = useParams();
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [countdownCompleted, setCountdownCompleted] = useState(false);
+   count=count +1;
+   const navigate = useNavigate();
+   const { id } = useParams();
+   const [data, setData] = useState([]);
+   const [isFlipped, setIsFlipped] = useState(false);
+   const [loading, setLoading] = useState(true);
+   const [timeDifference, setTimeDifference] = useState(0);
+ 
+   useEffect(() => {
+     const fetchData = async () => {
+       try {
+         const response = await fetch(`https://assignment12-client-side-from.vercel.app/users/${id}`);
+         const fetchedData = await response.json();
+ 
+         if (Array.isArray(fetchedData) && fetchedData.length > 0) {
+           setData(fetchedData[0]);
+           setLoading(false);
+         } else {
+           console.error("Empty or invalid data received:", fetchedData);
+         }
+       } catch (error) {
+         console.error("Error fetching data:", error);
+       }
+     };
+ 
+     fetchData();
+   }, [id]);
+ 
+   useEffect(() => {
+     const calculateTimeDifference = () => {
+       if (data.hours) {
+         const currentDate = new Date();
+         const contestEndDate = new Date(parseInt(data.hours));
+         const timeDiff = Math.abs(contestEndDate - currentDate);
+         console.log(timeDiff)
+         setTimeDifference(Math.max(0, timeDiff)); // Ensure time difference is non-negative
+       }
+     };
+ 
+     calculateTimeDifference();
+   }, [data.hours]);
+  console.log(data, id ,timeDifference);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://assignment12-client-side-from.vercel.app/users/${id}`
-        );
-        const fetchedData = await response.json();
-
-        // Check if fetchedData is an array and not empty
-        if (Array.isArray(fetchedData) && fetchedData.length > 0) {
-          setDatas(fetchedData[0]);
-        } else {
-          console.error("Empty or invalid data received:", fetchedData);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  console.log(data, id);
-  const handleCountdownComplete = () => {
-    setCountdownCompleted(true);
-  };
+ 
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -54,6 +70,7 @@ const Details = () => {
   const handlePayment = () =>{
     navigate(`/pay`)
   }
+
 
 
   return (
@@ -95,7 +112,16 @@ const Details = () => {
                 {data.price}$
               </p>
               <p className=""></p>
-               <Timer key={data.id} durationInHours= {(data.hours > 0 ? data.hours : 2) }></Timer>
+              
+              <div>
+              {timeDifference > 0 ? (
+                <div>
+                   Time Remaining: {Math.floor(timeDifference  /  (1000 * 60 * 60))} hours {Math.floor((timeDifference / 1000 / 60) % 60)} minutes
+                </div>
+              ) : (
+                <div>Contest has ended</div>
+              )}
+            </div>
                <button className='btn' onClick={handlePayment}>SetWinner</button>
               
               <button
@@ -146,7 +172,16 @@ const Details = () => {
                 {data.price}$
               </p>
               <p className=""></p>
-              <Timer key={data.id} durationInHours= {(data.hours > 0 ? data.hours : 2) }></Timer>
+              {data.hours && <Countdown date={new Date(data.hours)} />}
+              <div>
+              {timeDifference > 0 ? (
+                <div>
+                  Time Remaining: {Math.floor(timeDifference / (1000 * 60 * 60))} hours {Math.floor((timeDifference / 1000 / 60) % 60)} minutes
+                </div>
+              ) : (
+                <div>Contest has ended</div>
+              )}
+            </div>
               <button className='btn ' onClick={handlePayment}>SetWinner</button>
               <button
                 onClick={() => handleOrder(data._id)}
